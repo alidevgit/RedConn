@@ -17,10 +17,7 @@ namespace RedConn
             this.browser.Explorer.ObjectForScripting = this;
         }
 
-        public bool UserIsAuth()
-        {
-            return this.UserFirstName() != null;
-        }
+        public bool UserIsAuth() { return this.UserFirstName() != null; }
 
         public string UserFirstName()
         {
@@ -38,47 +35,26 @@ namespace RedConn
             return null;
         }
 
-        public void UserLogin()
-        {
-            browser.ShowLogin();
-        }
+        public void UserLogin() { browser.ShowLogin(); }
+        public bool UserLogout() { var ret = RemoteSend("UserLogout"); return true; }
+        public OBrIMObj GetProjects()  { var ret = RemoteSend("PrjList"); return ret; }
+        public OBrIMObj OpenProject(string prjID) { var ret = RemoteSend("PrjOpen", prjID); return ret; }
+        public OBrIMObj CreateProject(string projectTitle) { var ret = RemoteSend("PrjCreate", projectTitle); return ret; }
+        public OBrIMObj UpdateProjectFromXML(string xml) { var ret = RemoteSend("PrjUpdateXML", xml); return ret; }
+        public OBrIMObj DeleteProject(string prjID) { var ret = RemoteSend("PrjDelete", prjID); return ret; }
 
-        public bool UserLogout()
-        {
-            var ret = RemoteSend("UserLogout");
-            return true;
-        }
+        public OBrIMObj CreateObject(string parentID, string objType, string objName) { var ret = RemoteSend("ObjCreate", parentID, objType, objName); return ret; }
+        public OBrIMObj GetObject(string objID) { var ret = RemoteSend("ObjGet", objID); return ret; }
+        public OBrIMObj DeleteObject(string objID) { var ret = RemoteSend("ObjRemove", objID); return ret; }
 
-        public OBrIMObj GetProjects() 
-        {
-            var ret = RemoteSend("PrjList");
-            return ret;
-        }
+        public OBrIMObj CreateParam(string objID, string paramName, string paramType, string paramValue, string paramDesc, string paramUnit, string paramUnitCategory) { var ret = RemoteSend("ParamCreate", objID, paramName, paramType, paramValue, paramDesc, paramUnit, paramUnitCategory); return ret; }
+        public OBrIMObj GetParam(string objID, string paramName) { var ret = RemoteSend("ParamGet", objID, paramName); return ret; }
+        public OBrIMObj SetParamValue(string objID, string paramName, string paramValue) { var ret = RemoteSend("ParamSet", objID, paramName, paramValue); return ret; }
+        public OBrIMObj RemoveParam(string objID, string paramName) { var ret = RemoteSend("ParamRemove", objID, paramName); return ret; }
 
-        public OBrIMObj OpenProject(string prjID)
+        public OBrIMObj RemoteSend(string method, string arg0 = null, string arg1 = null, string arg2 = null, string arg3 = null, string arg4 = null, string arg5 = null, string arg6 = null)
         {
-            var ret = RemoteSend("PrjOpen", prjID);
-            return ret;
-        }
-
-        public OBrIMObj GetObject(string objID)
-        {
-            var ret = RemoteSend("ObjGet", objID);
-            return ret;
-        }
-
-
-        public void RemoteReceive(string eventName)
-        {
-            if (eventName == "UserLoginSuccess")
-            {
-                browser.Hide();
-            }
-        }
-
-        public OBrIMObj RemoteSend(string method, string arg0 = null)
-        {
-            string s = (string)this.browser.Explorer.Document.InvokeScript("APIConn", new object[] { method, arg0 });
+            string s = (string)this.browser.Explorer.Document.InvokeScript("APIConn", new object[] { method, arg0, arg1, arg2, arg3, arg4, arg5, arg6 });
             if (s == null) { 
                 return null;
             }
@@ -89,6 +65,13 @@ namespace RedConn
             ret.Parse(o);
             return ret;
         }
-
+        
+        public void RemoteReceive(string eventName)
+        {
+            if (eventName == "UserLoginSuccess")
+            {
+                browser.Hide();
+            }
+        }
     }
 }
