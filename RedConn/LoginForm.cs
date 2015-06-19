@@ -22,6 +22,7 @@ namespace RedConn
 
         public void ShowLogin()
         {
+            IE.Refresh()
             mShowAllowed = true;
             this.ShowDialog();
         }
