@@ -4,26 +4,26 @@ using System.Text;
 
 namespace RedConn
 {
-    public class OBrIMParamList
+    public class RemoteParamList
     {
-        private List<OBrIMParam> items = new List<OBrIMParam>();
+        private List<RemoteParam> items = new List<RemoteParam>();
 
-        public OBrIMParam Get(int index)
+        public RemoteParam Get(int index)
         {
             return items[index];
         }
 
-        public void Add(OBrIMParam item)
+        public void Add(RemoteParam item)
         {
             items.Add(item);
         }
 
-        public void Set(int index, OBrIMParam item)
+        public void Set(int index, RemoteParam item)
         {
             items[index] = item;
         }
 
-        public void Remove(OBrIMParam item)
+        public void Remove(RemoteParam item)
         {
             items.Remove(item);
         }

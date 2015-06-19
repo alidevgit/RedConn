@@ -4,26 +4,26 @@ using System.Text;
 
 namespace RedConn
 {
-    public class OBrIMObjList
+    public class RemoteObjList
     {
-        private List<OBrIMObj> items = new List<OBrIMObj>();
+        private List<RemoteObj> items = new List<RemoteObj>();
 
-        public OBrIMObj Get(int index)
+        public RemoteObj Get(int index)
         {
             return items[index];
         }
 
-        public void Add(OBrIMObj item)
+        public void Add(RemoteObj item)
         {
             items.Add(item);
         }
 
-        public void Set(int index, OBrIMObj item)
+        public void Set(int index, RemoteObj item)
         {
             items[index] = item;
         }
 
-        public void Remove(OBrIMObj item)
+        public void Remove(RemoteObj item)
         {
             items.Remove(item);
         }

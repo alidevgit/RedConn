@@ -4,23 +4,25 @@ using System.Text;
 
 namespace RedConn
 {
-    public class OBrIMValue
+    public class RemoteValue
     {
         private object value;
 
         internal void Parse(object v)
         {
+            if (v == null) return;
+
             if (!v.GetType().IsArray)
             {
                 this.value = v;
                 return;
             }
 
-            OBrIMValueList list = new OBrIMValueList();
+            RemoteValueList list = new RemoteValueList();
             object[] a = (object[])v;
             for(int i=0; i < a.Length; i++)
             {
-                OBrIMValue sv = new OBrIMValue();
+                RemoteValue sv = new RemoteValue();
                 sv.Parse(a[i]);
                 list.Add(sv);
             }
@@ -45,11 +47,11 @@ namespace RedConn
             }
         }
 
-        public OBrIMValueList AsList()
+        public RemoteValueList AsList()
         {
             try
             {
-                return (OBrIMValueList)this.value;
+                return (RemoteValueList)this.value;
             }
             catch (Exception e)
             {
@@ -64,7 +66,7 @@ namespace RedConn
 
         public bool IsList()
         {
-            return this.value.GetType() == typeof(OBrIMValueList);
+            return this.value.GetType() == typeof(RemoteValueList);
         }
 
         public bool IsNumber()

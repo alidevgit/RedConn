@@ -51,13 +51,13 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RedApp.cs" />
-    <Compile Include="RedObj.cs" />
-    <Compile Include="RedObjList.cs" />
-    <Compile Include="RedParam.cs" />
-    <Compile Include="RedParamList.cs" />
-    <Compile Include="RedValue.cs" />
-    <Compile Include="RedValueList.cs" />
+    <Compile Include="RemoteConn.cs" />
+    <Compile Include="RemoteObj.cs" />
+    <Compile Include="RemoteObjList.cs" />
+    <Compile Include="RemoteParam.cs" />
+    <Compile Include="RemoteParamList.cs" />
+    <Compile Include="RemoteValue.cs" />
+    <Compile Include="RemoteValueList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

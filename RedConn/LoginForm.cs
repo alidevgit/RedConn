@@ -13,7 +13,7 @@ namespace RedConn
         public LoginForm()
         {
             InitializeComponent();
-            IE.Navigate("https://starkappcloud.appspot.com/app/?api=1");
+            IE.Navigate("https://150617-dot-starkappcloud.appspot.com/app/?api=1");
             while (IE.ReadyState != WebBrowserReadyState.Complete)
             {
                 Application.DoEvents();
