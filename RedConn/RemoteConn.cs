@@ -11,14 +11,17 @@ namespace RedConn
     public class RemoteConn
     {
         LoginForm browser;
+        
+        public LoginForm Browser {get { return browser; }}
 
         public event MessageReceivedEventHandler MessageReceived;
 
         public RemoteConn()
         {
             this.browser = new LoginForm();
-            this.browser.ShowDialog();
             this.browser.Explorer.ObjectForScripting = this;
+            if (isForAutoCAD) return;
+            this.browser.ShowDialog();
         }
 
         public bool UserIsAuth() { return this.UserFirstName() != null; }
