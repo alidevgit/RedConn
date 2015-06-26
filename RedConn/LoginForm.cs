@@ -10,10 +10,11 @@ namespace RedConn
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        public LoginForm(bool isForAutoCAD = false)
         {
             InitializeComponent();
             IE.Navigate("https://150617-dot-starkappcloud.appspot.com/app/?api=1");
+            if (isForAutoCAD) return;
             while (IE.ReadyState != WebBrowserReadyState.Complete)
             {
                 Application.DoEvents();
@@ -22,7 +23,7 @@ namespace RedConn
 
         public void ShowLogin()
         {
-            IE.Refresh()
+            IE.Refresh();
             mShowAllowed = true;
             this.ShowDialog();
         }
