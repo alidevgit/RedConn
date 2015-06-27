@@ -16,11 +16,11 @@ namespace RedConn
 
         public event MessageReceivedEventHandler MessageReceived;
 
-        public RemoteConn(bool isForAutoCAD = false)
+        public RemoteConn(bool isDeterminateCompletionByEvent = false)
         {
-            this.browser = new LoginForm(isForAutoCAD);
+            this.browser = new LoginForm(isDeterminateCompletionByEvent);
             this.browser.Explorer.ObjectForScripting = this;
-            if (isForAutoCAD) return;
+            if (isDeterminateCompletionByEvent) return;
             this.browser.ShowDialog();
         }
 
