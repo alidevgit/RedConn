@@ -11,14 +11,17 @@ namespace RedConn
     public class RemoteConn
     {
         LoginForm browser;
+        
+        public LoginForm Browser {get { return browser; }}
 
         public event MessageReceivedEventHandler MessageReceived;
 
-        public RemoteConn()
+        public RemoteConn(bool isDeterminateCompletionByEvent = false)
         {
-            this.browser = new LoginForm();
-            this.browser.ShowDialog();
+            this.browser = new LoginForm(isDeterminateCompletionByEvent);
             this.browser.Explorer.ObjectForScripting = this;
+            if (isDeterminateCompletionByEvent) return;
+            this.browser.ShowDialog();
         }
 
         public bool UserIsAuth() { return this.UserFirstName() != null; }
